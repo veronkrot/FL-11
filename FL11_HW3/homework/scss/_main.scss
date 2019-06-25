@@ -1,0 +1,329 @@
+@mixin underline($color, $borderWidth, $width, $marginTop) {
+  content: "";
+  border-style: solid;
+  border-color: $color;
+  border-width: $borderWidth;
+  display: block;
+  width: $width;
+  margin-top: $marginTop;
+  background-color: $color;
+}
+
+@mixin setupColors($isDarkTheme) {
+  @if ($isDarkTheme == true) {
+    %lightTextColor {
+      color: #ffffff;
+    }
+
+    p,
+    .footer-cr,
+    .header_button,
+    .section_banner_button {
+      @extend %lightTextColor
+    }
+  } @else {
+    %darkTextColor {
+      color: #2C2F3C;
+    }
+
+    .landing-logo,
+    .header_heading,
+    .header_text,
+    .section_text,
+    .section_banner_heading {
+      @extend %darkTextColor
+    }
+
+    %whiteText {
+      color: #ffffff;
+    }
+
+    .section_card_heading,
+    .section_banner_button,
+    .section_card_text,
+    .footer_text,
+    .footer-cr,
+    .section_banner_text,
+    .header_button,
+    .footer_logo {
+      @extend %whiteText
+    }
+  }
+}
+
+%boldFont {
+  font-weight: bold;
+}
+
+.landing-logo > p,
+.header_heading,
+.section_text,
+.section_card_heading,
+.section_banner_heading {
+  @extend %boldFont
+}
+
+%borderRadius {
+  border-radius: 5px;
+}
+
+.section_card_img,
+.section_card,
+.section_banner {
+  @extend %borderRadius
+}
+
+$color-map: (
+        "secondaryTextColor": lightgray,
+        "btnColor": $buttonColor,
+        "bgColor": $bgColor,
+        "underlineColor": $underlineColor,
+        "sectionBgColor": $sectionBgColor,
+        "banerBg": $bannerBg,
+);
+
+$font-map: (
+        "mainFont": $mainFont,
+        "headerTextFont": $headerTextFont,
+        "fontFamily": $fontFamily
+);
+
+body {
+  @include setupColors($isDarkTheme);
+  background-color: map-get($color-map, "bgColor");
+
+  * > button {
+    background-color: map-get($color-map, "btnColor");
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: map-get($font-map, "mainFont");
+    width: 96px;
+    height: 30px;
+    border-radius: 3px;
+    margin-top: 35px;
+  }
+
+  * > .landing-logo {
+    > img {
+      float: left;
+      margin-right: 10px;
+      width: 30px;
+      padding-top: 10px;
+    }
+
+    > p {
+      padding-top: $logoPadding;
+      font-family: map-get($font-map, "fontFamily");
+
+      > span {
+        display: flex;
+        font-size: $logoFontSize;
+        padding-left: 4px;
+        margin-top: $logoMargin;
+      }
+    }
+  }
+
+  > header.header {
+    background-image: $logoImage;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 60%;
+    height: 550px;
+    display: flex;
+    margin: auto;
+    border-bottom-right-radius: 450px 210px;
+
+    > .header-wrap {
+      padding-left: 135px;
+
+      > .header_heading {
+        width: 400px;
+        font-family: map-get($font-map, "mainFont");
+        font-size: 50px;
+        line-height: 55px;
+      }
+
+      > .header_heading::after {
+        @include underline(map-get($color-map, "underlineColor"), 8px, 194px, -20px);
+      }
+
+      > .header_text {
+        width: 500px;
+        font-family: map-get($font-map, "headerTextFont");
+        font-size: 12px;
+        white-space: pre-wrap;
+        margin-left: -22px;
+        margin-top: -30px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  > main.section {
+    margin: 0 400px 0 400px;
+
+    > .section_text {
+      font-family: map-get($font-map, "mainFont");
+      text-align: center;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    > .section_text::after {
+      @include underline(map-get($color-map, "underlineColor"), 5px, 134px, -16px);
+      margin-left: 613px;
+    }
+
+    > .section_card_wrap {
+      display: flex;
+      justify-content: center;
+
+      > .section_card {
+        background-color: map-get($color-map, "sectionBgColor");
+        float: left;
+        width: 285px;
+        padding: 20px;
+        margin: 10px;
+
+        > .section_card_heading {
+          font-family: map-get($font-map, "mainFont");
+          text-align: center;
+          font-size: 20px;
+          font-weight: 600;
+        }
+
+        > .section_card_img {
+          width: 295px;
+          margin: -5px;
+        }
+
+        > .section_card_text {
+          display: flex;
+          text-align: center;
+          font-family: map-get($font-map, "headerTextFont");
+          font-size: small;
+          font-weight: lighter;
+          line-height: 20px;
+          color: map-get($color-map, "secondaryTextColor");
+          margin-bottom: auto;
+        }
+      }
+
+      > .section_card:nth-child(1) {
+        .section_card_heading::after {
+          @include underline(map-get($color-map, "underlineColor"), 5px, 143px, -10px);
+          margin-left: 66px;
+        }
+      }
+
+      > .section_card:nth-child(2) {
+        > .section_card_text {
+          width: 280px;
+        }
+
+        .section_card_heading::after {
+          @include underline(map-get($color-map, "underlineColor"), 5px, 117px, -10px);
+          margin-left: 79px;
+        }
+      }
+
+      > .section_card:nth-child(3) {
+        > .section_card_text {
+          margin-top: 30px;
+        }
+
+        .section_card_heading::after {
+          @include underline(map-get($color-map, "underlineColor"), 5px, 88px, -10px);
+          margin-left: 94px;
+        }
+      }
+    }
+
+    > .section_banner {
+      width: 700px;
+      height: 100px;
+      display: flex;
+      background-image: map-get($color-map, "banerBg");
+      background-color: map-get($color-map, "sectionBgColor");
+      margin: 100px auto -50px;
+      position: relative;
+      z-index: 1;
+
+      > .section_banner_text_wrap {
+        margin: auto auto auto 90px;
+        font-family: map-get($font-map, "mainFont");
+
+        > .section_banner_heading::after {
+          margin-left: 80px;
+          @include underline(map-get($color-map, "underlineColor"), 4px, 35px, -10px);
+        }
+
+        > .section_banner_heading {
+          font-size: 20px;
+          margin-bottom: 5px;
+          margin-top: 0;
+        }
+
+        > .section_banner_text {
+          font-size: 12px;
+          color: map-get($color-map, "secondaryTextColor");
+          margin-top: 12px;
+        }
+      }
+
+      > .section_banner_button {
+        margin-right: 90px;
+      }
+    }
+  }
+
+  > footer.footer {
+    margin: 0 400px 0 400px;
+
+    .footer-wrap {
+      background-color: map-get($color-map, "sectionBgColor");
+      position: relative;
+      display: flex;
+      height: 150px;
+
+      > * {
+        font-family: map-get($font-map, "headerTextFont");
+      }
+
+      > .footer_logo.landing-logo {
+        display: inline;
+        padding-top: 60px;
+        padding-left: 165px;
+
+        > p {
+          display: table-cell;
+          color: map-get($color-map, "secondaryTextColor");
+        }
+      }
+
+      > p.footer_text {
+        display: inline;
+        padding-top: 55px;
+        width: 200px;
+        font-size: 10px;
+        line-height: 15px;
+        padding-left: 229px;
+        color: map-get($color-map, "secondaryTextColor");
+      }
+
+      > span.footer-cr {
+        display: inline;
+        font-size: 12px;
+        padding-top: 79px;
+        padding-left: 229px;
+        color: map-get($color-map, "secondaryTextColor");
+      }
+    }
+  }
+
+}
