@@ -137,15 +137,11 @@ const createDeleteAction = (id) => {
 
 const deleteActionHandler = (id) => {
     return () => {
-        let attrSelector = `[data-item='${id}']`;
-        const completedActionCheckbox = document.querySelector(`.checkbox${attrSelector}`);
-        const actionName = document.querySelector(`.action-name${attrSelector}`);
-        const deleteAction = document.querySelector(`.delete${attrSelector}`);
-        const editAction = document.querySelector(`.edit${attrSelector}`);
-        actionName.style.display = 'none';
-        deleteAction.style.display = 'none';
-        editAction.style.display = 'none';
-        completedActionCheckbox.style.display = 'none';
+        let selector = `.action-wrapper[data-item='${id}']`;
+        const wrapper = document.querySelector(selector);
+        if (wrapper) {
+            wrapper.remove();
+        }
     }
 };
 
@@ -192,6 +188,7 @@ const newAction = (actionName) => {
     if (isReachedMaxItems()) {
         disableControlOnMaxItems();
     }
+    // uncomment this to enable drag'n'drop
     // initDnD();
 };
 
