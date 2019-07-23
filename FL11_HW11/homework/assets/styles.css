@@ -1,0 +1,90 @@
+#root {
+    margin: auto;
+    width: 60%;
+}
+
+.header-name {
+    color: #00ccff;
+    display: flex;
+    justify-content: center;
+    font-size: 150%;
+    margin-top: 2%;
+    font-weight: bold;
+}
+
+.input {
+    width: 91%;
+    padding: 15px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #adadad;
+}
+
+button {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.material-icons.add-action {
+    font-size: 45px;
+    display: flex;
+    float: right;
+    margin-right: 12px;
+    margin-top: 7px;
+}
+
+.add-action[disabled] {
+    color: lightgray;
+}
+
+.material-icons {
+    color: #7FB7EC;
+}
+
+.divider-line {
+    height: 6px;
+    background-color: #cfefff;
+    border: none;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-name {
+    margin-top: 6px;
+    margin-left: 6px;
+    font-size: 18px;
+    color: #00ccff;
+}
+
+.delete {
+    margin-left: auto;
+}
+
+.edit {
+    margin-left: 10px;
+}
+
+.edit-action-input {
+    padding: 10px 14px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #adadad;
+    width: 29%;
+}
+
+.save {
+    display: flex;
+    margin-top: 11px;
+    margin-left: 7px;
+}
+
+.checkbox {
+    display: flex;
+    width: 25px;
+    height: 25px;
+}
+
